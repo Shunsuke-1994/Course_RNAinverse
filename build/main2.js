@@ -67,8 +67,8 @@ module.exports = function (pres) {
     code(s, `uv run python exercises/ex0_check.py`, 0.55, 1.65, 7.4, 0.6, { size: 17 });
     txt(s, 'コンピューターが返す結果（入力しない）', 0.55, 2.45, 7.4, 0.35, { fontSize: 14, bold: true, color: T.primary });
     code(s, `ViennaRNA 2.7.2\n配列: GGCGCAGAAAUGCGCC\n長さ: 16`, 0.55, 2.8, 7.4, 1.25, { size: 17 });
-    txt(s, 'スクリプトの中身は exercises/ex0_check.py（import RNA、バージョン表示、配列の長さ）', 0.55, 4.15, 7.4, 0.4, { fontSize: 12, color: T.muted });
-    txt(s, `exercises フォルダが手元にない人：${REPO_SHORT} の Code → Download ZIP で入手できます`, 0.55, 4.55, 7.4, 0.45, { fontSize: 13, color: T.accent });
+    txt(s, `exercises フォルダが手元にない人：${REPO_SHORT} から入手（Code → Download ZIP、または次の git clone）`, 0.55, 4.08, 7.4, 0.45, { fontSize: 12, color: T.accent });
+    code(s, `git clone https://${REPO_SHORT}.git`, 0.55, 4.55, 7.4, 0.45, { size: 13 });
     card(s, 8.2, 1.35, 4.6, 3.6, '確認すること', ['エラーが出ずに 3 行表示される', 'バージョンが 2.7.2（違えば TA に伝える）', '長さが 16', 'exercises フォルダの他のスクリプトも同じ形で実行する'], { size: 16 });
     card(s, 0.55, 5.15, 12.2, 1.55, '動かないとき', ['ModuleNotFoundError: No module named "RNA" → uv run を付け忘れたか、別のフォルダにいる。プロジェクトのフォルダで実行する', '>>> の画面になったら exit() で抜ける。どうしても動かない → グループの画面共有で参加する（結果の読み方は同じ）'], { size: 15, fill: T.accentSoft, titleColor: T.accent });
   }

@@ -13,7 +13,7 @@ module.exports = function (pres, opts = {}) {
     txt(s, '使用ソフトウェア：ViennaRNA 2.7.2（Python から import RNA）', 0.8, 5.85, 8.0, 0.45, { fontSize: 16, color: 'B7C8CC' });
     txt(s, `資料 ${VERSION}`, 0.8, 0.9, 4.0, 0.4, { fontSize: 16, color: 'B7C8CC' });
     txt(s, `資料・演習スクリプト：${REPO_SHORT}`, 0.8, 6.3, 8.4, 0.45, { fontSize: 16, color: T.white });
-    txt(s, 'ここからダウンロードしてそのまま使えます（緑の Code ボタン → Download ZIP）', 0.8, 6.75, 8.4, 0.4, { fontSize: 14, color: 'DCE9EC' });
+    txt(s, 'ここからダウンロードしてそのまま使えます（Code → Download ZIP、または git clone）', 0.8, 6.75, 8.4, 0.4, { fontSize: 14, color: 'DCE9EC' });
     drawStructure(s, EX.seq, EX.ss, EX.coords, { x: 9.3, y: 1.4, w: 3.4, h: 4.6 }, { r: 0.2, font: 14, pairColor: 'B7C8CC', numberEvery: 0, ends: false });
     txt(s, EX.seq, 9.3, 6.1, 3.4, 0.4, { fontFace: F.mono, fontSize: 16, color: 'DCE9EC', align: 'center' });
     s.addNotes(notes({ time: '1分', points: ['講習名・講師・日時の確認。録画は説明部分のみ行うことを最初に伝える。', '右の図は本日繰り返し使う16塩基のRNA（GGCGCAGAAAUGCGCC）。', '続く4枚は事前配布したインストール手順の再掲。当日は動作確認のみ（演習1の準備で行う）。', 'スライド・演習スクリプトは GitHub で公開している（表紙下の URL）。資料の版は表紙と各ページ下に表示。'], refs: [REF.vrna, REF.pypi] }));

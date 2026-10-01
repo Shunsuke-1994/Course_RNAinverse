@@ -86,7 +86,12 @@ uv add viennarna==2.7.2
 uv run python -c "import RNA; print(RNA.__version__)"   # 2.7.2
 
 # 当日の動作確認
-uv run python exercises/ex1_fold.py`, 0.55, 1.3, 7.2, 3.0, { size: 13 });
+uv run python exercises/ex1_fold.py
+
+# 別の方法：GitHub から一式を入手してそのまま使う
+git clone ${L.REPO}.git
+cd Course_RNAinverse && uv sync
+uv run python exercises/ex0_check.py`, 0.55, 1.3, 7.2, 3.0, { size: 11 });
     const rows = [['症状', '原因の候補', '対応'], ['ModuleNotFoundError: RNA', '別の Python を起動している', 'uv run python を使う／仮想環境を有効化'], ['バージョンが 2.7.2 でない', '別環境の ViennaRNA', 'uv add viennarna==2.7.2 で入れ直す'], ['同じ seed で配列が違う', 'OS ごとの乱数実装の差', '数値の一致は求めない。d と P(T) の傾向を比べる'], ['start が設計配列に変わっている', 'inverse_fold が start を上書き', '控え start.encode().decode() を使う'], ['unequal length のエラー', '配列長と構造長の不一致', 'len() で確認。括弧の対応も確認'], ['N が残る', 'Python API は N を置換しない', 'A/C/G/U で初期配列を作る']];
     table(s, rows, 0.55, 4.45, 12.2, { colW: [3.4, 3.6, 5.2], size: 12, zebra: true });
     card(s, 8.0, 1.3, 4.8, 3.0, '検証済み・未検証', ['検証済み：macOS 15（Python 3.13.4、uv 0.12）、Windows 11（Python 3.13.15、事務局確認）、viennarna 2.7.2', 'Windows では同じ seed でも設計配列が変わる（d = 0 なら成功）', '未検証：他の macOS/Linux 構成', '動かない参加者は TA・グループの画面で結果比較に参加'], { size: 12, fill: T.accentSoft, titleColor: T.accent });

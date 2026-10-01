@@ -37,7 +37,9 @@ uv add viennarna==2.7.2
 
 # exercises フォルダを GitHub から入手してここにコピー
 #   ${REPO}
-#   緑の Code ボタン → Download ZIP → 展開`, 0.55, 1.3, 7.4, 3.2, { size: 14 });
+#   緑の Code ボタン → Download ZIP → 展開
+#   git を使う人は次の 1 行でも入手できる:
+#   git clone ${REPO}.git`, 0.55, 1.3, 7.4, 3.2, { size: 13 });
     txt(s, '動作確認（手順 4）', 8.2, 1.3, 4.6, 0.4, { fontSize: 16, bold: true, color: T.primary });
     code(s, `uv run python -c "import RNA; print(RNA.__version__)"
 # → 2.7.2

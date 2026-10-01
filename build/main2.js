@@ -58,7 +58,7 @@ for seed, seq, ss, mfe, d in results:
 };
 module.exports = function (pres) {
   // 15 録画停止
-  sectionSlide(pres, { stop: true, num: 15, title: '録画を停止します：演習1（15分）', body: '19:30–19:45　構造予測と配列変更（グループ演習）\n提出担当者が画面共有しながら進めます。TA が各グループを支援します。\n自分の環境が動かなくても、グループの画面を見て参加できます。', notes: notes({ time: '30秒', points: ['録画を停止してから演習に入る。', '手順スライド（16–18）は表示したまま。'] }) });
+  sectionSlide(pres, { stop: true, num: 15, title: '録画を停止します：演習1（15分）', body: '19:30–19:45　構造予測と配列変更（グループ演習）\n提出担当者が画面共有しながら進めます。TA が各グループを支援します。\n自分の環境が動かなくても、グループの画面を見て参加できます。', notes: notes({ time: '30秒', points: ['録画を停止してから演習に入る。', '手順スライド（21–23）は表示したまま。'] }) });
   // 16 演習1 準備
   {
     const s = frame(pres, { title: '演習1の準備：import とバージョン、入力配列の確認', num: 16, notes: notes({ time: '3分', points: ['対話モード（>>>）は使わず、確認用スクリプト exercises/ex0_check.py を実行するだけにしている。', '口頭で一言：「黒い画面に打つのは uv run python ... の1行だけ。下の3行はコンピューターが返した結果」。', 'バージョン 2.7.2 と長さ 16 が出れば準備完了。', 'エラー時：ModuleNotFoundError → 環境が違う（uv run python を付けたか、プロジェクトのフォルダにいるかを確認）。TA が支援。', '万一 python の対話モード（>>> の画面）に入ってしまったら exit() と打って Enter で抜ける。'], extra: ['動かない参加者は TA・グループの画面共有で結果を確認し、比較の議論に参加する。', 'Windows/macOS の細かな環境差は未検証。各自の環境で動いたかどうかをチャットで共有。'], refs: [REF.pyapi, REF.pypi, REF.uv] }) });
@@ -74,7 +74,7 @@ module.exports = function (pres) {
   }
   // 17 演習1A
   {
-    const s = frame(pres, { title: '演習1A：短いRNAを fold し、構造とエネルギーを読む', num: 17, notes: notes({ time: '5分', points: ['RNA.fold(seq) は (構造, MFE) のタプルを返す。エネルギーの単位は kcal/mol。', `期待する出力：((((((....)))))) と −10.20。`, '出力を dot-bracket の読み方で確認：括弧の対応、ループの位置、塩基対の数。', 'つまずきやすい点：配列に T を入れる（U に置き換える、ViennaRNA は T も U として扱うが表示は入力のまま）。全角文字の混入。'], questions: ['予測された構造は、スライド13で読んだ構造と一致するか。'], refs: [REF.pyapi] }) });
+    const s = frame(pres, { title: '演習1A：短いRNAを fold し、構造とエネルギーを読む', num: 17, notes: notes({ time: '5分', points: ['RNA.fold(seq) は (構造, MFE) のタプルを返す。エネルギーの単位は kcal/mol。', `期待する出力：((((((....)))))) と −10.20。`, '出力を dot-bracket の読み方で確認：括弧の対応、ループの位置、塩基対の数。', 'つまずきやすい点：配列に T を入れる（U に置き換える、ViennaRNA は T も U として扱うが表示は入力のまま）。全角文字の混入。'], questions: ['予測された構造は、スライド14で読んだ構造と一致するか。'], refs: [REF.pyapi] }) });
     badge(s, '必須', { w: 1.4, color: T.accent });
     code(s, EXCODE.ex1a, 0.55, 1.3, 7.4, 2.7, { size: 14 });
     txt(s, '期待する出力', 8.2, 1.3, 4.6, 0.35, { fontSize: 14, color: T.muted });
@@ -146,7 +146,7 @@ module.exports = function (pres) {
     const rows = [['手順', '配列', '予測構造', 'd', '変更']].concat(Wk.trace.map((t, k) => [{ text: k === 0 ? '初期' : (k === 1 ? '整合化' : `更新${t.step}`) }, { text: t.seq, mono: true, size: 11 }, { text: t.ss, mono: true, size: 11 }, { text: String(t.d), align: 'right', bold: t.d === 0 }, { text: t.change.replace(/整合化: 対合できない目標ペアを直す \(位置 ([\d,]+)\)/, '位置 $1 を対合できる文字に'), size: 10 }]));
     table(s, rows, 5.4, 1.7, 7.4, { colW: [0.7, 2.25, 2.25, 0.35, 1.85], size: 10, zebra: true });
     txt(s, 'd = 目標との塩基対距離（次のスライド）。1 回の更新で 1〜2 文字が変わり、d が単調に減って 0 に達している', 5.4, 5.0, 7.4, 0.6, { fontSize: 12, color: T.muted });
-    card(s, 5.4, 5.6, 7.4, 1.1, null, [{ text: '実装も論文どおり、目標をヘアピン側の部分構造から順に解く。成功しても「目標構造の確率が高い」とは限らない（スライド 25）。' }], { size: 13, noBullet: true, fill: T.accentSoft });
+    card(s, 5.4, 5.6, 7.4, 1.1, null, [{ text: '実装も論文どおり、目標をヘアピン側の部分構造から順に解く。成功しても「目標構造の確率が高い」とは限らない（スライド 26）。' }], { size: 13, noBullet: true, fill: T.accentSoft });
   }
   // 23 目標への近さ
   {
@@ -245,7 +245,7 @@ module.exports = function (pres) {
       ['RNA.inverse_fold', '目標構造（＋初期配列）', '変異と再予測を繰り返す探索', '配列と残り距離 d', '初期値依存、P(T) の高さ、実験での機能'],
       ['inverse_pf_fold', '目標構造', '目標構造の確率を最大化する探索', 'GC の多い安定配列', '実験・細胞内での扱いやすさ']];
     table(s, rows.map((r, i) => r.map((c, j) => ({ text: c, mono: i > 0 && j === 0, bold: i === 0 }))), 0.55, 1.3, 12.2, { colW: [2.1, 2.0, 3.2, 2.4, 2.5], size: 14, zebra: true });
-    card(s, 0.55, 4.2, 12.2, 2.5, '覚えて帰ること', ['配列 → 構造は一意に予測できるが、分子は構造集団として揺らぐ（MFE と確率を区別）', '構造 → 配列は探索で、答えは複数・初期値依存・失敗もある', '成功の基準（d = 0）と良さの基準（P(T)、実験）は別', `資料と演習スクリプトは ${REPO_SHORT} に置いてあります。講習後も自分の PC で試せます`], { size: 15 });
+    card(s, 0.55, 4.2, 12.2, 2.5, '覚えて帰ること', ['配列 → 構造は一意に予測できるが、分子は構造集団として揺らぐ（MFE と確率を区別）', '構造 → 配列は探索で、答えは複数・初期値依存・失敗もある', '成功の基準（d = 0）と良さの基準（P(T)、実験）は別', `資料と演習スクリプトは ${REPO_SHORT} に置いてあります。講習後も試せます。質問は Issues へ`], { size: 15 });
   }
   // 34 提出課題
   {
@@ -258,9 +258,9 @@ module.exports = function (pres) {
   sectionSlide(pres, { stop: true, num: 35, title: '録画を停止します：質疑応答（10分）', body: '20:50–21:00　質疑応答\n本日の内容への質問のほか、「自分ならどのようなRNAを設計したいか」を話してください。', notes: notes({ time: '30秒', points: ['録画停止を確認してから質疑に入る。'] }) });
   // 36 質疑応答
   {
-    const s = frame(pres, { title: '質疑応答：自分ならどのようなRNAを設計したいか', num: 36, notes: notes({ time: '10分', points: ['質問が出ないときの投げかけ：設計したい RNA の「目標構造」「入力」「条件」「検証方法」を順に聞く。', '本日の道具でできること／できないこと（スライド 37）に対応させて答える。'], questions: ['どんな機能の RNA を作りたいか', 'その目標構造はどう決めるか', '成功をどう確かめるか'], refs: [REF.vrna, REF.inv] }) });
+    const s = frame(pres, { title: '質疑応答：自分ならどのようなRNAを設計したいか', num: 36, notes: notes({ time: '10分', points: ['質問が出ないときの投げかけ：設計したい RNA の「目標構造」「入力」「条件」「検証方法」を順に聞く。', '本日の道具でできること／できないこと（スライド 38）に対応させて答える。'], questions: ['どんな機能の RNA を作りたいか', 'その目標構造はどう決めるか', '成功をどう確かめるか'], refs: [REF.vrna, REF.inv] }) });
     const q = [['目標は何か', '結合・切替・触媒・形。目標二次構造をどう決める？'], ['入力は何か', 'トリガーRNA、小分子、温度。2 状態が要る？'], ['条件は何か', '固定配列、GC 含量、長さ、他分子との相互作用'], ['どう確かめるか', '予測（P(T)）→ 実験（ゲル、蛍光、AFM）']];
     q.forEach(([t, b], k) => card(s, 0.55 + (k % 2) * 6.2, 1.3 + Math.floor(k / 2) * 2.3, 6.0, 2.1, t, [b], { size: 17, titleSize: 22 }));
-    txt(s, `質問は口頭でもチャットでも。時間内に答えきれない質問はグループの TA と後日共有します。\n資料・演習スクリプト：${REPO_SHORT}（ダウンロードしてそのまま使えます）`, 0.55, 5.95, 12.2, 0.8, { fontSize: 15, color: T.muted });
+    txt(s, `質問は口頭でもチャットでも。時間内に答えきれない質問はグループの TA と後日共有します。\n講義後の質問は GitHub の Issues で受け付けます：${REPO_SHORT}/issues`, 0.55, 5.95, 12.2, 0.8, { fontSize: 15, color: T.muted });
   }
 };

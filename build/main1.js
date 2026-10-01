@@ -16,7 +16,7 @@ module.exports = function (pres, opts = {}) {
     txt(s, 'ここからダウンロードしてそのまま使えます（Code → Download ZIP、または git clone）', 0.8, 6.75, 8.4, 0.4, { fontSize: 14, color: 'DCE9EC' });
     drawStructure(s, EX.seq, EX.ss, EX.coords, { x: 9.3, y: 1.4, w: 3.4, h: 4.6 }, { r: 0.2, font: 14, pairColor: 'B7C8CC', numberEvery: 0, ends: false });
     txt(s, EX.seq, 9.3, 6.1, 3.4, 0.4, { fontFace: F.mono, fontSize: 16, color: 'DCE9EC', align: 'center' });
-    s.addNotes(notes({ time: '1分', points: ['講習名・講師・日時の確認。録画は説明部分のみ行うことを最初に伝える。', '右の図は本日繰り返し使う16塩基のRNA（GGCGCAGAAAUGCGCC）。', '続く4枚は事前配布したインストール手順の再掲。当日は動作確認のみ（演習1の準備で行う）。', 'スライド・演習スクリプトは GitHub で公開している（表紙下の URL）。資料の版は表紙と各ページ下に表示。'], refs: [REF.vrna, REF.pypi] }));
+    s.addNotes(notes({ time: '1分', points: ['講習名・講師・日時の確認。録画は説明部分のみ行うことを最初に伝える。', '右の図は本日繰り返し使う16塩基のRNA（GGCGCAGAAAUGCGCC）。', '続く4枚は事前配布したインストール手順の再掲、その次の1枚は GitHub（資料の入手と Issues での質問）の案内。当日は動作確認のみ（演習1の準備で行う）。', 'スライド・演習スクリプトは GitHub で公開している（表紙下の URL）。資料の版は表紙と各ページ下に表示。'], refs: [REF.vrna, REF.pypi] }));
   }
   if (opts.afterCover) opts.afterCover(pres);
   // 2 到達目標
@@ -115,7 +115,7 @@ module.exports = function (pres, opts = {}) {
   }
   // 8 配列と塩基対
   {
-    const s = frame(pres, { title: 'RNAの配列と塩基対：A–U、G–C、G–U', num: 8, notes: notes({ time: '2分', points: ['RNAは4種の塩基 A, C, G, U が一本鎖として並ぶ（5′→3′の向き）。', '鎖が折り返して逆平行に並ぶと、向かい合う塩基が対合する。標準はA–U（水素結合2本）とG–C（3本）。G–Uはゆらぎ対で弱いが二次構造予測では許される。', '対合の安定さは水素結合の数だけで決まらない。隣り合う塩基対の重なり（スタッキング）が効く（スライド16）。'], questions: ['G–Cが多い配列は安定になりやすい。それだけで良い設計と言えるか（後で戻る）。'], refs: [REF.turner] }) });
+    const s = frame(pres, { title: 'RNAの配列と塩基対：A–U、G–C、G–U', num: 8, notes: notes({ time: '2分', points: ['RNAは4種の塩基 A, C, G, U が一本鎖として並ぶ（5′→3′の向き）。', '鎖が折り返して逆平行に並ぶと、向かい合う塩基が対合する。標準はA–U（水素結合2本）とG–C（3本）。G–Uはゆらぎ対で弱いが二次構造予測では許される。', '対合の安定さは水素結合の数だけで決まらない。隣り合う塩基対の重なり（スタッキング）が効く（スライド17）。'], questions: ['G–Cが多い配列は安定になりやすい。それだけで良い設計と言えるか（後で戻る）。'], refs: [REF.turner] }) });
     const bases = [['A', 'アデニン'], ['C', 'シトシン'], ['G', 'グアニン'], ['U', 'ウラシル']];
     bases.forEach(([b, nm], k) => { const x = 0.75 + k * 1.25; s.addText(b, { shape: pres.shapes.OVAL, x, y: 1.5, w: 0.8, h: 0.8, fill: { color: T.base[b] }, line: { color: T.white }, fontFace: F.mono, fontSize: 28, bold: true, color: T.white, align: 'center', valign: 'middle', margin: 0 }); txt(s, nm, x - 0.2, 2.35, 1.2, 0.35, { fontSize: 12, color: T.muted, align: 'center' }); });
     const pairs = [['A', 'U', '水素結合 2本', '標準（Watson–Crick）'], ['G', 'C', '水素結合 3本', '標準・最も安定'], ['G', 'U', 'ゆらぎ対（wobble）', '弱いが許される']];
@@ -154,7 +154,7 @@ module.exports = function (pres, opts = {}) {
   }
   // 11 自由エネルギーと安定性
   {
-    const s = frame(pres, { title: '自由エネルギーと安定性：同じ条件で構造を比較する', num: 11, notes: notes({ time: '3分', points: ['同じ配列がとりうる構造ごとに自由エネルギー ΔG（kcal/mol）を計算できる。負に大きいほど安定。開いた鎖（対合なし）が基準の 0。', '比較は同じ条件（温度37 ℃、Turner 2004 パラメータ、同じプログラム）で行う。数値の絶対値より差に意味がある。', 'MFE（minimum free energy）構造 = 最も低い ΔG の構造。ただし他の構造も一定の割合で存在する（スライド17）。', `右の確率 P は分配関数から計算した各構造の出現確率（合計は 1）。`], questions: ['末端の1対が外れただけで 2.3 kcal/mol 上がるのはなぜか（スタッキング1つ分が失われる）。'], refs: [REF.turner, REF.lorenz] }) });
+    const s = frame(pres, { title: '自由エネルギーと安定性：同じ条件で構造を比較する', num: 11, notes: notes({ time: '3分', points: ['同じ配列がとりうる構造ごとに自由エネルギー ΔG（kcal/mol）を計算できる。負に大きいほど安定。開いた鎖（対合なし）が基準の 0。', '比較は同じ条件（温度37 ℃、Turner 2004 パラメータ、同じプログラム）で行う。数値の絶対値より差に意味がある。', 'MFE（minimum free energy）構造 = 最も低い ΔG の構造。ただし他の構造も一定の割合で存在する（スライド18）。', `右の確率 P は分配関数から計算した各構造の出現確率（合計は 1）。`], questions: ['末端の1対が外れただけで 2.3 kcal/mol 上がるのはなぜか（スタッキング1つ分が失われる）。'], refs: [REF.turner, REF.lorenz] }) });
     const rows = [['構造（同じ配列 ' + EX.seq + '）', 'ΔG (kcal/mol)', '確率 P']].concat(DATA.stability.map(r => [{ text: r.ss, mono: true }, { text: r.e.toFixed(1), align: 'right' }, { text: r.p < 0.001 ? '< 0.001' : r.p.toFixed(3), align: 'right' }]));
     table(s, rows, 0.55, 1.35, 7.6, { colW: [4.6, 1.6, 1.4], size: 16, zebra: true });
     // energy ladder

@@ -60,10 +60,20 @@ ViennaRNA 2.7.2
 - 動作確認済み: macOS 15（Python 3.13.4）、Windows 11（Python 3.13.15）、いずれも viennarna 2.7.2
 - Windows では、同じ seed でも演習2の設計配列が資料の値と変わります。`d = 0` なら成功です。
 
+## 質問・不具合の報告（講義後も対応します）
+
+質問は GitHub の [Issues](https://github.com/Shunsuke-1994/Course_RNAinverse/issues) で受け付けています。講義が終わったあとでも構いません。
+
+1. このページ上部の **Issues** タブ → **New issue** を押す（GitHub アカウントが必要です）
+2. タイトルに質問の要点、本文に詳しい内容を書く
+3. エラーのときは、**実行したコマンド・表示されたエラー文・OS（macOS / Windows）** を書いてもらえると答えやすいです
+
+Issues は誰でも読める公開の場です。名前やメールアドレスなどの個人情報は書かないでください。
+
 ## リポジトリの中身
 
-- `ViennaRNA_講習_v2.0.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋本編 36 枚＋補足 8 枚（計 49 枚、話者ノート付き、16:9）
-- `ViennaRNA_講習_事前準備_インストール手順_v2.0.pptx` / `.pdf` — 事前配布用のインストール手順のみ（5 ページ）
+- `ViennaRNA_講習_v2.0.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋GitHub の案内 1 枚＋本編 36 枚＋補足 8 枚（計 50 枚、話者ノート付き、16:9）
+- `ViennaRNA_講習_事前準備_インストール手順_v2.0.pptx` / `.pdf` — 事前配布用のインストール手順と GitHub の案内（6 ページ）
 - `exercises/` — 演習用スクリプト、README、`expected_output.txt`（macOS での実測出力）
 - `pyproject.toml` / `uv.lock` / `.python-version` — 上の B で使う環境の定義（viennarna==2.7.2）
 - `build/` — スライドを再生成するためのソース

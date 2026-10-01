@@ -6,6 +6,8 @@
 最新版は GitHub で公開しています: https://github.com/Shunsuke-1994/Course_RNAinverse
 （緑の **Code** ボタン → **Download ZIP** で入手し、展開した中の `exercises/` を自分のプロジェクトにコピーします）
 
+質問は GitHub の [Issues](https://github.com/Shunsuke-1994/Course_RNAinverse/issues) で受け付けています（講義後も対応します）。
+
 ## 事前準備（uv を使う場合）
 
 ```bash

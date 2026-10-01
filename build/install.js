@@ -63,4 +63,18 @@ python -m pip install viennarna==2.7.2
 python -c "import RNA; print(RNA.__version__)"   # → 2.7.2`, 0.55, 4.8, 7.4, 1.9, { size: 12 });
     card(s, 8.2, 4.35, 4.6, 2.35, '当日までに', ['動作確認の出力が出たら準備完了', 'エラーが残る場合はエラー文を控えておく（当日 TA が対応）', '動かなくても参加可。TA・グループの画面で結果を比較する'], { size: 14, fill: T.accentSoft, titleColor: T.accent });
   }
+  // I5 GitHub（資料の入手と講義後の質問）
+  {
+    const s = frame(pres, { title: '資料と演習スクリプトは GitHub に置いてあります', tag, notes: notes({ time: '事前配布（当日は 1 分）', points: ['スライド（最新版）、事前準備の手順、演習スクリプト（exercises/）をまとめて公開している。ダウンロードすればそのまま使える。', 'ZIP：緑の Code ボタン → Download ZIP → 展開し、中の exercises/ を viennarna-course/ にコピーする。', 'git clone した場合は、そのフォルダで uv sync を 1 回実行すれば Python 3.13 と viennarna 2.7.2 が入り、そのまま演習を実行できる（viennarna-course を作らなくてよい）。', '質問は GitHub の Issues で受け付ける。講義後も対応する。投稿には GitHub アカウントが必要。Issues は公開されるので個人情報は書かないよう伝える。'], refs: [REPO, REPO + '/issues'] }) });
+    txt(s, REPO, 0.55, 1.25, 12.2, 0.55, { fontFace: F.mono, fontSize: 24, bold: true, color: T.primary, valign: 'middle' });
+    txt(s, '入手方法 A：ZIP でダウンロード（おすすめ）', 0.55, 1.95, 7.4, 0.4, { fontSize: 16, bold: true, color: T.primary });
+    txt(s, '緑の Code ボタン → Download ZIP → 展開し、中の exercises/ を viennarna-course/ にコピー（手順 2・3 のフォルダ構成）', 0.55, 2.35, 7.4, 0.7, { fontSize: 14 });
+    txt(s, '入手方法 B：git clone（git を使える人）', 0.55, 3.1, 7.4, 0.4, { fontSize: 16, bold: true, color: T.primary });
+    code(s, `git clone ${REPO}.git
+cd Course_RNAinverse
+uv sync                       # Python 3.13 と viennarna 2.7.2 が入る
+uv run python exercises/ex0_check.py`, 0.55, 3.5, 7.4, 1.25, { size: 12 });
+    card(s, 8.2, 1.95, 4.6, 2.8, 'リポジトリの中身', ['講義スライド（PDF、最新版）', '事前準備の手順（PDF）', 'exercises/：演習スクリプトと期待される出力', 'README：使い方の説明'], { size: 14 });
+    card(s, 0.55, 4.95, 12.2, 1.75, '質問は GitHub の Issues へ（講義後も対応します）', ['リポジトリ上部の Issues タブ → New issue に質問を書く（GitHub アカウントが必要）', 'エラーのときは、実行したコマンド・表示されたエラー文・OS を書くと答えやすい', 'Issues は誰でも読める公開の場です。個人情報は書かないでください'], { size: 14, fill: T.accentSoft, titleColor: T.accent });
+  }
 };

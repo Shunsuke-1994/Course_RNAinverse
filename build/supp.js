@@ -19,7 +19,7 @@ module.exports = function (pres) {
   }
   // S2 thermodynamic DP
   {
-    const s = frame(pres, { title: '補足2：ViennaRNA の熱力学的 DP（Zuker 型の漸化式）', num: n++, tag: SUP, notes: notes({ time: '任意', points: ['F_ij：区間 [i,j] の最小自由エネルギー（外部ループ扱い）。C_ij：i と j が対合しているときの最小エネルギー。M, M1：多分岐ループ内部の補助配列。', 'C の 3 項は「ヘアピン H」「内部ループ/バルジ/スタッキング I（k,l を内側の対）」「多分岐ループ（a, b, c は線形近似の定数）」に対応。ループ単位のエネルギー（スライド 16）がここに入る。', '内部ループの大きさを制限（既定 30）して O(n³) 時間、O(n²) 記憶。分配関数版（McCaskill）は min を和、+ を積に置き換えたもの。', '式の記法は Lorenz et al. 2011 / Hofacker et al. 1994 に準拠（簡略化）。'], refs: [REF.hofacker, REF.lorenz, REF.zuker, REF.mccaskill] }) });
+    const s = frame(pres, { title: '補足2：ViennaRNA の熱力学的 DP（Zuker 型の漸化式）', num: n++, tag: SUP, notes: notes({ time: '任意', points: ['F_ij：区間 [i,j] の最小自由エネルギー（外部ループ扱い）。C_ij：i と j が対合しているときの最小エネルギー。M, M1：多分岐ループ内部の補助配列。', 'C の 3 項は「ヘアピン H」「内部ループ/バルジ/スタッキング I（k,l を内側の対）」「多分岐ループ（a, b, c は線形近似の定数）」に対応。ループ単位のエネルギー（スライド 17）がここに入る。', '内部ループの大きさを制限（既定 30）して O(n³) 時間、O(n²) 記憶。分配関数版（McCaskill）は min を和、+ を積に置き換えたもの。', '式の記法は Lorenz et al. 2011 / Hofacker et al. 1994 に準拠（簡略化）。'], refs: [REF.hofacker, REF.lorenz, REF.zuker, REF.mccaskill] }) });
     const ks = ['eq_zuker_F', 'eq_zuker_C', 'eq_zuker_M', 'eq_zuker_M1'];
     const cap = ['外部ループ：i が非対合か、i–k の対合で分割', 'i–j が閉じるループ：ヘアピン／内部ループ（スタッキングを含む）／多分岐', '多分岐ループの内部（最初の分岐を含む）', '多分岐ループの内部（ちょうど 1 本の分岐）'];
     let y = 1.3; ks.forEach((k, i) => { const r = eq(s, k, 0.55, y, k === 'eq_zuker_C' ? { w: 8.7 } : (k === 'eq_zuker_M' ? { w: 8.2 } : { h: 0.6 })); txt(s, cap[i], 9.4, y, 3.4, r.h, { fontSize: 12, color: T.muted, valign: 'middle' }); y += r.h + 0.3; });

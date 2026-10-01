@@ -1,0 +1,51 @@
+=== ex0_check.py ===
+ViennaRNA 2.7.2
+配列: GGCGCAGAAAUGCGCC
+長さ: 16
+
+=== ex1_fold.py ===
+ViennaRNA 2.7.2
+GGCGCAGAAAUGCGCC
+((((((....)))))) -10.20 kcal/mol
+
+=== ex1b_mutate.py ===
+元の配列 GGCGCAGAAAUGCGCC ((((((....)))))) -10.20
+変更後   GGCACAGAAAUGCGCC (((.((....)).))) -4.80
+塩基対距離 = 1
+
+# ここから下（演習2・発展）は乱数を使うため、Windows では配列・ΔG・P(目標) が資料と異なります。
+# d = 0 なら成功です（inverse_pf_fold の P(目標) = 0.976 は Windows でも同じ）。
+
+=== ex2a_inverse.py ===
+初期配列: UCCAGAAACGAUCAUU
+設計配列: CGCGGAAACGUUCGUG  残り距離 d = 0.0
+
+=== ex2b_refold.py ===
+CGCGGAAACGUUCGUG
+((((((....)))))) -3.80
+((((((....)))))) ← 目標
+目標との塩基対距離 = 0
+初期配列からの Hamming 距離 = 6
+
+=== ex2c_repeat.py ===
+1 CGCGGAAACGUUCGUG ((((((....)))))) -3.80 d = 0
+2 CUCAGUUUCUAUUGAG ((((((....)))))) -3.90 d = 0
+3 CCAGUGUGCACACUGG ((((((....)))))) -7.30 d = 0
+4 AUGCGGUCACCCGUGU ((((((....)))))) -4.20 d = 0
+5 UCGGAUUUAGGUCCGA ((((((....)))))) -6.00 d = 0
+
+=== ex2d_probability.py ===
+1 CGCGGAAACGUUCGUG d = 0 P(目標) = 0.616
+2 CUCAGUUUCUAUUGAG d = 0 P(目標) = 0.863
+3 CCAGUGUGCACACUGG d = 0 P(目標) = 0.935
+4 AUGCGGUCACCCGUGU d = 0 P(目標) = 0.506
+5 UCGGAUUUAGGUCCGA d = 0 P(目標) = 0.570
+inverse_pf_fold: GGCGGCGCAGGCCGCC P(目標) = 0.976
+
+=== ex3_group.py ===
+1 GUCAGAAACUAUCAAGUAGCUGAU (((((..(((....)))..))))) -6.00 d = 0 P37 = 0.664 P60 = 0.446
+2 CUGUGCUACUAAUGAGUCACGCGG (((((..(((....)))..))))) -5.00 d = 0 P37 = 0.711 P60 = 0.234
+3 CCACUGUGGACACCUCUCGAGUGG (((((..(((....)))..))))) -7.60 d = 0 P37 = 0.697 P60 = 0.682
+4 CUCUAGUCACCCUUGUGUAUAGAG (((((..(((....)))..))))) -7.50 d = 0 P37 = 0.901 P60 = 0.529
+5 AGGCGUUGUUCCCCAAUUCCGCCU (((((..(((....)))..))))) -5.60 d = 0 P37 = 0.273 P60 = 0.031
+

@@ -1,0 +1,82 @@
+{
+ "eq_energy": {
+  "tex": "$E(S)=\\sum_{L\\in\\mathrm{loops}(S)}\\Delta G(L)$",
+  "w": 1232,
+  "h": 276
+ },
+ "eq_mfe": {
+  "tex": "$S^{*}=\\arg\\min_{S}\\,E(S)$",
+  "w": 990,
+  "h": 238
+ },
+ "eq_boltz": {
+  "tex": "$P(S)=\\dfrac{e^{-E(S)/RT}}{Z},\\qquad Z=\\sum_{S^{\\prime}} e^{-E(S^{\\prime})/RT}$",
+  "w": 1990,
+  "h": 393
+ },
+ "eq_bpp": {
+  "tex": "$p_{ij}=\\sum_{S\\ni(i,j)} P(S)$",
+  "w": 841,
+  "h": 274
+ },
+ "eq_G": {
+  "tex": "$G_{\\mathrm{ens}}=-RT\\ln Z$",
+  "w": 849,
+  "h": 163
+ },
+ "eq_bpd": {
+  "tex": "$d_{\\mathrm{bp}}(S,T)=\\left|S\\setminus T\\right|+\\left|T\\setminus S\\right|$",
+  "w": 1384,
+  "h": 171
+ },
+ "eq_inverse": {
+  "tex": "$x^{*}=\\arg\\min_{x}\\; d_{\\mathrm{bp}}\\!\\left(\\mathrm{MFE}(x),\\,T\\right)$",
+  "w": 1565,
+  "h": 217
+ },
+ "eq_inverse_pf": {
+  "tex": "$x^{*}=\\arg\\max_{x}\\; P(T\\mid x)=\\arg\\min_{x}\\left[E(x,T)+RT\\ln Z(x)\\right]$",
+  "w": 2486,
+  "h": 194
+ },
+ "eq_nussinov": {
+  "tex": "$N(i,j)=\\max\\left\\{N(i{+}1,j),\\; N(i,j{-}1),\\; N(i{+}1,j{-}1)+\\delta_{ij},\\; \\max_{i<k<j}\\left[N(i,k)+N(k{+}1,j)\\right]\\right\\}$",
+  "w": 3522,
+  "h": 200
+ },
+ "eq_zuker_F": {
+  "tex": "$F_{ij}=\\min\\left\\{F_{i+1,j},\\; \\min_{i<k\\leq j}\\left[C_{ik}+F_{k+1,j}\\right]\\right\\}$",
+  "w": 2100,
+  "h": 239
+ },
+ "eq_zuker_C": {
+  "tex": "$C_{ij}=\\min\\left\\{\\mathcal{H}(i,j),\\; \\min_{i<k<l<j}\\left[C_{kl}+\\mathcal{I}(i,j;k,l)\\right],\\; \\min_{i<u<j}\\left[M_{i+1,u}+M^{1}_{u+1,j-1}+a\\right]\\right\\}$",
+  "w": 3086,
+  "h": 201
+ },
+ "eq_zuker_M": {
+  "tex": "$M_{ij}=\\min\\left\\{\\min_{i<u<j}\\left[(u-i)c+C_{uj}+b\\right],\\; \\min_{i<u<j}\\left[M_{i,u-1}+C_{uj}+b\\right],\\; M_{i,j-1}+c\\right\\}$",
+  "w": 2982,
+  "h": 185
+ },
+ "eq_zuker_M1": {
+  "tex": "$M^{1}_{ij}=\\min\\left\\{M^{1}_{i,j-1}+c,\\; C_{ij}+b\\right\\}$",
+  "w": 1740,
+  "h": 210
+ },
+ "eq_ed": {
+  "tex": "$\\mathrm{ED}(T)=1-\\frac{1}{n}\\left[\\sum_{(i,j)\\in T}p_{ij}+\\sum_{i\\,\\mathrm{unpaired\\ in}\\,T}q_i\\right]$",
+  "w": 1867,
+  "h": 252
+ },
+ "eq_p_example": {
+  "tex": "$P(S)=\\dfrac{e^{-E(S)/RT}}{Z}=e^{-(E(S)-G_{\\mathrm{ens}})/RT}$",
+  "w": 1771,
+  "h": 349
+ },
+ "eq_kT": {
+  "tex": "$RT=0.616\\ \\mathrm{kcal/mol}\\ (37^{\\circ}\\mathrm{C})$",
+  "w": 1538,
+  "h": 163
+ }
+}

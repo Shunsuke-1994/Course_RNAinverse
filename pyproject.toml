@@ -1,0 +1,20 @@
+[project]
+name = "viennarna-course"
+version = "0.1.0"
+description = "分子ロボティクス夏の学校 ViennaRNA 講習: 実習用環境"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "viennarna==2.7.2",
+]
+
+[dependency-groups]
+build = [
+    "matplotlib>=3.9",
+    "numpy",
+    "pillow",
+    "lxml",
+    "defusedxml",
+    "python-pptx",
+    "pymupdf",
+    "markitdown[pptx]",
+]

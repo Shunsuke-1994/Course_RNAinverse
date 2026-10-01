@@ -1,0 +1,19 @@
+.venv/
+build/node_modules/
+build/preview/
+build/papers/*.html
+build/papers/geary2014_SM.pdf
+build/papers/geary_p*.png
+build/papers/*contact*.png
+build/deck_text.md
+__pycache__/
+
+# 公開リポジトリに含めないもの
+.DS_Store
+# 論文 PDF（出版社の著作物。再配布しない）
+ref/
+# 論文の元画像・ページ画像・ソースの写し（スライドで使う切り出しだけ残す）
+build/papers/*
+!build/papers/hofacker_fig5.png
+!build/papers/green_f1_panelC.png
+!build/papers/geary_S4_2HAE.png

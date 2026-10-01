@@ -1,6 +1,6 @@
 // 本編 スライド 15–36
 const L = require('./lib');
-const { T, F, DATA, REF, frame, sectionSlide, badge, txt, bullets, code, cite, card, arrow, line, seqRow, ssRow, numRow, label, drawStructure, arcs, table, eq, img, exBoxes, notes, charW, pairTable } = L;
+const { REPO_SHORT, T, F, DATA, REF, frame, sectionSlide, badge, txt, bullets, code, cite, card, arrow, line, seqRow, ssRow, numRow, label, drawStructure, arcs, table, eq, img, exBoxes, notes, charW, pairTable } = L;
 const EX = DATA.ex, M = DATA.mutants, E2 = DATA.ex2, LOW = DATA.low_design, ST = DATA.stats;
 const EXCODE = {
   ex1a: `import RNA
@@ -67,7 +67,8 @@ module.exports = function (pres) {
     code(s, `uv run python exercises/ex0_check.py`, 0.55, 1.65, 7.4, 0.6, { size: 17 });
     txt(s, 'コンピューターが返す結果（入力しない）', 0.55, 2.45, 7.4, 0.35, { fontSize: 14, bold: true, color: T.primary });
     code(s, `ViennaRNA 2.7.2\n配列: GGCGCAGAAAUGCGCC\n長さ: 16`, 0.55, 2.8, 7.4, 1.25, { size: 17 });
-    txt(s, 'スクリプトの中身は exercises/ex0_check.py（import RNA、バージョン表示、配列の長さ）', 0.55, 4.2, 7.4, 0.5, { fontSize: 12, color: T.muted });
+    txt(s, 'スクリプトの中身は exercises/ex0_check.py（import RNA、バージョン表示、配列の長さ）', 0.55, 4.15, 7.4, 0.4, { fontSize: 12, color: T.muted });
+    txt(s, `exercises フォルダが手元にない人：${REPO_SHORT} の Code → Download ZIP で入手できます`, 0.55, 4.55, 7.4, 0.45, { fontSize: 13, color: T.accent });
     card(s, 8.2, 1.35, 4.6, 3.6, '確認すること', ['エラーが出ずに 3 行表示される', 'バージョンが 2.7.2（違えば TA に伝える）', '長さが 16', 'exercises フォルダの他のスクリプトも同じ形で実行する'], { size: 16 });
     card(s, 0.55, 5.15, 12.2, 1.55, '動かないとき', ['ModuleNotFoundError: No module named "RNA" → uv run を付け忘れたか、別のフォルダにいる。プロジェクトのフォルダで実行する', '>>> の画面になったら exit() で抜ける。どうしても動かない → グループの画面共有で参加する（結果の読み方は同じ）'], { size: 15, fill: T.accentSoft, titleColor: T.accent });
   }
@@ -244,7 +245,7 @@ module.exports = function (pres) {
       ['RNA.inverse_fold', '目標構造（＋初期配列）', '変異と再予測を繰り返す探索', '配列と残り距離 d', '初期値依存、P(T) の高さ、実験での機能'],
       ['inverse_pf_fold', '目標構造', '目標構造の確率を最大化する探索', 'GC の多い安定配列', '実験・細胞内での扱いやすさ']];
     table(s, rows.map((r, i) => r.map((c, j) => ({ text: c, mono: i > 0 && j === 0, bold: i === 0 }))), 0.55, 1.3, 12.2, { colW: [2.1, 2.0, 3.2, 2.4, 2.5], size: 14, zebra: true });
-    card(s, 0.55, 4.75, 12.2, 1.95, '覚えて帰ること', ['配列 → 構造は一意に予測できるが、分子は構造集団として揺らぐ（MFE と確率を区別）', '構造 → 配列は探索で、答えは複数・初期値依存・失敗もある', '成功の基準（d = 0）と良さの基準（P(T)、実験）は別'], { size: 17 });
+    card(s, 0.55, 4.2, 12.2, 2.5, '覚えて帰ること', ['配列 → 構造は一意に予測できるが、分子は構造集団として揺らぐ（MFE と確率を区別）', '構造 → 配列は探索で、答えは複数・初期値依存・失敗もある', '成功の基準（d = 0）と良さの基準（P(T)、実験）は別', `資料と演習スクリプトは ${REPO_SHORT} に置いてあります。講習後も自分の PC で試せます`], { size: 15 });
   }
   // 34 提出課題
   {
@@ -260,6 +261,6 @@ module.exports = function (pres) {
     const s = frame(pres, { title: '質疑応答：自分ならどのようなRNAを設計したいか', num: 36, notes: notes({ time: '10分', points: ['質問が出ないときの投げかけ：設計したい RNA の「目標構造」「入力」「条件」「検証方法」を順に聞く。', '本日の道具でできること／できないこと（スライド 37）に対応させて答える。'], questions: ['どんな機能の RNA を作りたいか', 'その目標構造はどう決めるか', '成功をどう確かめるか'], refs: [REF.vrna, REF.inv] }) });
     const q = [['目標は何か', '結合・切替・触媒・形。目標二次構造をどう決める？'], ['入力は何か', 'トリガーRNA、小分子、温度。2 状態が要る？'], ['条件は何か', '固定配列、GC 含量、長さ、他分子との相互作用'], ['どう確かめるか', '予測（P(T)）→ 実験（ゲル、蛍光、AFM）']];
     q.forEach(([t, b], k) => card(s, 0.55 + (k % 2) * 6.2, 1.3 + Math.floor(k / 2) * 2.3, 6.0, 2.1, t, [b], { size: 17, titleSize: 22 }));
-    txt(s, '質問は口頭でもチャットでも。時間内に答えきれない質問はグループの TA と後日共有します。', 0.55, 6.0, 12.2, 0.7, { fontSize: 16, color: T.muted });
+    txt(s, `質問は口頭でもチャットでも。時間内に答えきれない質問はグループの TA と後日共有します。\n資料・演習スクリプト：${REPO_SHORT}（ダウンロードしてそのまま使えます）`, 0.55, 5.95, 12.2, 0.8, { fontSize: 15, color: T.muted });
   }
 };

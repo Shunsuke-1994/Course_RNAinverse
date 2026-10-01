@@ -10,9 +10,10 @@ module.exports = function (pres, opts = {}) {
     txt(s, 'ViennaRNA：RNA構造解析ソフトウェア', 0.8, 1.5, 8.0, 1.4, { fontSize: 40, bold: true, color: T.white, valign: 'middle' });
     txt(s, '二次構造の予測から inverse folding（配列設計）までを体験する', 0.8, 2.9, 8.4, 0.6, { fontSize: 19, color: 'DCE9EC' });
     txt(s, '分子ロボティクス夏の学校 2026\n講師：角 俊輔\n2026年10月8日（木）19:00–21:00（日本時間・Zoom）', 0.8, 4.3, 8.4, 1.6, { fontSize: 20, color: T.white, paraSpaceAfter: 6 });
-    txt(s, '使用ソフトウェア：ViennaRNA 2.7.2（Python から import RNA）', 0.8, 6.0, 8.0, 0.45, { fontSize: 16, color: 'B7C8CC' });
+    txt(s, '使用ソフトウェア：ViennaRNA 2.7.2（Python から import RNA）', 0.8, 5.85, 8.0, 0.45, { fontSize: 16, color: 'B7C8CC' });
     txt(s, `資料 ${VERSION}`, 0.8, 0.9, 4.0, 0.4, { fontSize: 16, color: 'B7C8CC' });
-    txt(s, `資料・演習スクリプト：${REPO_SHORT}`, 0.8, 6.5, 8.4, 0.45, { fontSize: 16, color: T.white });
+    txt(s, `資料・演習スクリプト：${REPO_SHORT}`, 0.8, 6.3, 8.4, 0.45, { fontSize: 16, color: T.white });
+    txt(s, 'ここからダウンロードしてそのまま使えます（緑の Code ボタン → Download ZIP）', 0.8, 6.75, 8.4, 0.4, { fontSize: 14, color: 'DCE9EC' });
     drawStructure(s, EX.seq, EX.ss, EX.coords, { x: 9.3, y: 1.4, w: 3.4, h: 4.6 }, { r: 0.2, font: 14, pairColor: 'B7C8CC', numberEvery: 0, ends: false });
     txt(s, EX.seq, 9.3, 6.1, 3.4, 0.4, { fontFace: F.mono, fontSize: 16, color: 'DCE9EC', align: 'center' });
     s.addNotes(notes({ time: '1分', points: ['講習名・講師・日時の確認。録画は説明部分のみ行うことを最初に伝える。', '右の図は本日繰り返し使う16塩基のRNA（GGCGCAGAAAUGCGCC）。', '続く4枚は事前配布したインストール手順の再掲。当日は動作確認のみ（演習1の準備で行う）。', 'スライド・演習スクリプトは GitHub で公開している（表紙下の URL）。資料の版は表紙と各ページ下に表示。'], refs: [REF.vrna, REF.pypi] }));
@@ -35,7 +36,7 @@ module.exports = function (pres, opts = {}) {
     const s = frame(pres, { title: '120分の進め方：説明と実習の時間配分', num: 3, notes: notes({ time: '2分', points: ['説明55分・実習55分・質疑10分。実習中もスライドは表示したままにする。', '説明部分は録画、質疑・グループ演習は録画停止。切替はスライドで案内する。', '演習は4グループ（各5〜6人）で、提出担当者が画面共有しながら進める。TAが各グループを支援する。環境が動かない人もグループの画面で参加できる。', '演習スライドには右上に「必須」「時間があれば」を表示してある。演習2は 2C まで届けば十分。', '補足扱いのスライド（DP、元論文、探索トレース）は本編では要点のみ話す。'], refs: [] }) });
     const rows = [['時刻', '内容', '分', '録画'],
       ['19:00–19:12', '到達目標とRNA設計の応用例', '12', '●'],
-      ['19:12–19:30', '二次構造・エネルギー・MFE・DPの直感', '18', '●'],
+      ['19:12–19:30', '二次構造・エネルギー・MFE・DP（動的計画法）の直感', '18', '●'],
       ['19:30–19:45', '演習1：構造予測と配列変更', '15', '停止'],
       ['19:45–20:00', 'inverse folding と RNAinverse の仕組み', '15', '●'],
       ['20:00–20:40', '演習2：配列設計・再予測・候補比較（グループ）', '40', '停止'],
@@ -145,7 +146,7 @@ module.exports = function (pres, opts = {}) {
     const s = frame(pres, { title: '二次構造の要素：ステム、ヘアピン、バルジ、内部ループ、分岐', num: 10, notes: notes({ time: '3分', points: ['ステム（らせん）：連続した塩基対。ヘアピンループ：1つの塩基対で閉じる非対合領域。バルジ：片側だけに非対合塩基。内部ループ：両側に非対合塩基。多分岐ループ：3本以上のステムが集まる。外部ループ：どの塩基対にも囲まれない末端側。', 'ViennaRNAのエネルギーモデルはこの「ループ」の単位で自由エネルギーを足し合わせる（次々スライド）。', `図の53塩基RNAは RNAinverse で設計した教材用配列（MFE構造が図の通りになることを確認済み。P(構造)=${EL.p}）。`, '前のスライドの小問の答え：3番Cは14番Gと対合、ループは7–10番、塩基対は6個。'], refs: [REF.lorenz, REF.turner] }) });
     const lc = {};
     EL.loops.forEach(Lp => { if (Lp.type === 'exterior') { Lp.positions.forEach(p => { if (pt[p - 1] === -1) lc[p] = T.loop.exterior; }); return; } const [i, j] = Lp.closing; const inner = Lp.inner; for (let p = i + 1; p < j; p++) { if (inner.some(([k, l]) => p >= k && p <= l)) continue; lc[p] = T.loop[Lp.type]; } });
-    drawStructure(s, EL.seq, EL.ss, EL.coords, { x: 0.4, y: 1.2, w: 7.6, h: 5.7 }, { r: 0.155, font: 9, colorBy: 'loop', loopColor: lc, numberEvery: 0, numSize: 9, pw: 2 });
+    drawStructure(s, EL.seq, EL.ss, EL.coords, { x: 0.4, y: 1.2, w: 7.6, h: 5.7 }, { r: 0.14, font: 9, colorBy: 'loop', loopColor: lc, numberEvery: 0, numSize: 9, pw: 2 });
     const leg = [['stack', 'ステム（連続した塩基対）'], ['hairpin', 'ヘアピンループ'], ['bulge', 'バルジ（片側のみ非対合）'], ['interior', '内部ループ（両側に非対合）'], ['multiloop', '多分岐ループ（3本のステムが集合）'], ['exterior', '外部ループ（5′/3′末端側）']];
     leg.forEach(([k, t], i) => { const y = 1.5 + i * 0.55; s.addShape(pres.shapes.OVAL, { x: 8.4, y: y + 0.08, w: 0.32, h: 0.32, fill: { color: T.loop[k] }, line: { color: T.white } }); txt(s, t, 8.85, y, 3.9, 0.48, { fontSize: 16, valign: 'middle' }); });
     txt(s, '配列（53塩基）と構造', 8.4, 5.0, 4.0, 0.35, { fontSize: 12, color: T.muted });
@@ -204,7 +205,7 @@ module.exports = function (pres, opts = {}) {
   // 14 DP の考え方
   {
     const C = DATA.counts;
-    const s = frame(pres, { title: 'DPの考え方：区間の計算結果を再利用する', num: 14, notes: notes({ time: '1分（補足扱い。本編は要点のみ）', points: ['本編では「候補が多すぎて全部は試せない → 短い区間の答えを使い回して速く解く」の1点だけ伝えて次へ進む。以下は質問が出たとき・時間に余裕があるときの説明。', '構造の候補は配列長とともに爆発的に増える（数値は計算で数えたもの。16塩基の例題RNAで塩基対規則を満たす構造は347通り、任意対合なら30塩基で約2.4億、100塩基で約10^33）。全部を試すのは不可能。', '動的計画法（DP）：短い区間 [i, j] の最良値（最小エネルギー）を表に保存し、長い区間はその組み合わせで求める。区間 [i, j] は「i が非対合」か「i が k と対合し、内側 [i+1, k−1] と外側 [k+1, j] に分かれる」のどちらか。', 'ViennaRNA はこの考え方をループ単位のエネルギーモデルに合わせて拡張（Zuker–Stiegler 型、計算量 O(n³)）。塩基対数を最大化する教材用の Nussinov 法とは別物（補足）。', '「DPを逆向きに解けば設計になる」わけではない（設計は探索問題）。'], refs: [REF.zuker, REF.hofacker, REF.lorenz, REF.nussinov] }) });
+    const s = frame(pres, { title: 'DP（動的計画法）の考え方：区間の計算結果を再利用する', num: 14, notes: notes({ time: '1分（補足扱い。本編は要点のみ）', points: ['本編では「候補が多すぎて全部は試せない → 短い区間の答えを使い回して速く解く」の1点だけ伝えて次へ進む。以下は質問が出たとき・時間に余裕があるときの説明。', '構造の候補は配列長とともに爆発的に増える（数値は計算で数えたもの。16塩基の例題RNAで塩基対規則を満たす構造は347通り、任意対合なら30塩基で約2.4億、100塩基で約10^33）。全部を試すのは不可能。', '動的計画法（DP）：短い区間 [i, j] の最良値（最小エネルギー）を表に保存し、長い区間はその組み合わせで求める。区間 [i, j] は「i が非対合」か「i が k と対合し、内側 [i+1, k−1] と外側 [k+1, j] に分かれる」のどちらか。', 'ViennaRNA はこの考え方をループ単位のエネルギーモデルに合わせて拡張（Zuker–Stiegler 型、計算量 O(n³)）。塩基対数を最大化する教材用の Nussinov 法とは別物（補足）。', '「DPを逆向きに解けば設計になる」わけではない（設計は探索問題）。'], refs: [REF.zuker, REF.hofacker, REF.lorenz, REF.nussinov] }) });
     badge(s, '補足扱い：本編は要点のみ', { w: 2.9, color: T.muted });
     card(s, 0.55, 1.35, 4.6, 5.35, '候補の数（列挙は不可能）', [], {});
     const rows = [['配列長', '構造の数'], ['16（例題RNA、対合規則あり）', '347'], ['16（任意の対合）', '5,223'], ['30（任意の対合）', '約 2.4 × 10⁸'], ['50（任意の対合）', '約 1.8 × 10¹⁵'], ['100（任意の対合）', '約 6 × 10³²']];

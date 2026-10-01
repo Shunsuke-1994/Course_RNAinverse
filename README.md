@@ -1,20 +1,71 @@
 # ViennaRNA 講習（分子ロボティクス夏の学校 2026, 2026-10-08）
 
-「ViennaRNA：RNA構造解析ソフトウェア」（講師 角 俊輔）の授業資料と演習スクリプトを公開しています。
+「ViennaRNA：RNA構造解析ソフトウェア」（講師 角 俊輔）の授業資料と演習スクリプトです。
+**このリポジトリからダウンロードすれば、スライドも演習もそのまま使えます。**
 
 - 公開先: https://github.com/Shunsuke-1994/Course_RNAinverse
-- 現在の版: **v1.0**（版は表紙と各ページ下に表示しています。更新した場合はファイル名の版を上げます）
+- 現在の版: **v2.0**（版は表紙と各ページ下に表示しています。更新した場合はファイル名の版を上げます）
 
-## 受講者の方へ
+| 資料 | ファイル |
+|---|---|
+| 講義スライド（PDF） | [`ViennaRNA_講習_v2.0.pdf`](ViennaRNA_講習_v2.0.pdf) |
+| 事前準備：インストール手順（PDF） | [`ViennaRNA_講習_事前準備_インストール手順_v2.0.pdf`](ViennaRNA_講習_事前準備_インストール手順_v2.0.pdf) |
+| 演習用スクリプト | [`exercises/`](exercises/)（使い方は [`exercises/README.md`](exercises/README.md)） |
 
-1. 事前準備の手順 `ViennaRNA_講習_事前準備_インストール手順_v1.0.pdf` に沿って環境を用意してください（所要 10〜15 分）。
-2. このページ右上の緑の **Code** ボタン → **Download ZIP** でダウンロードし、展開した中の `exercises/` フォルダを自分のプロジェクト（`viennarna-course/`）にコピーします。git を使える人は `git clone https://github.com/Shunsuke-1994/Course_RNAinverse.git` でも構いません。
-3. 講義スライドは `ViennaRNA_講習_v1.0.pdf` です。
+## 使い方
 
-## ファイル
-- `ViennaRNA_講習_v1.0.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋本編 36 枚＋補足 8 枚（計 49 枚、話者ノート付き、16:9）
-- `ViennaRNA_講習_事前準備_インストール手順_v1.0.pptx` / `.pdf` — 事前配布用のインストール手順のみ（5 ページ）
-- `exercises/` — 演習用スクリプト、README（実行方法、必須／時間があればの区分、Windows での注意）、`expected_output.txt`（macOS での実測出力）
+### 1. ダウンロードする
+
+- **ZIP（おすすめ）**: このページ上部の緑の **Code** ボタン → **Download ZIP** → ダウンロードした ZIP を展開します。`Course_RNAinverse-main` というフォルダができます。
+- **git を使う場合**:
+  ```bash
+  git clone https://github.com/Shunsuke-1994/Course_RNAinverse.git
+  ```
+
+### 2. Python と ViennaRNA を用意する（A か B のどちらか）
+
+先に uv をインストールしておきます（事前準備 PDF の手順 1）。
+
+**A. 事前準備の手順どおりに `viennarna-course` を作った人**
+
+展開したフォルダの中の `exercises/` を、`viennarna-course/` の中にコピーします。
+
+```bash
+cd viennarna-course
+uv run python exercises/ex0_check.py
+```
+
+**B. ダウンロードしたフォルダをそのまま使う人**
+
+フォルダの中で `uv sync` を 1 回実行すると、Python 3.13 と viennarna 2.7.2 が入ります（ほかのパッケージは入りません）。
+
+```bash
+cd Course_RNAinverse-main      # git clone した場合は cd Course_RNAinverse
+uv sync
+uv run python exercises/ex0_check.py
+```
+
+どちらの場合も、次のように表示されれば準備完了です。
+
+```
+ViennaRNA 2.7.2
+配列: GGCGCAGAAAUGCGCC
+長さ: 16
+```
+
+### 3. 演習を動かす
+
+`uv run python exercises/ex1_fold.py` のように、スライドに書かれたスクリプトを実行します。どのスクリプトも単独で動くので、途中のステップからでも始められます。各スクリプトの区分（必須／時間があれば）、期待される出力、Windows での注意は [`exercises/README.md`](exercises/README.md) にまとめています。
+
+- 動作確認済み: macOS 15（Python 3.13.4）、Windows 11（Python 3.13.15）、いずれも viennarna 2.7.2
+- Windows では、同じ seed でも演習2の設計配列が資料の値と変わります。`d = 0` なら成功です。
+
+## リポジトリの中身
+
+- `ViennaRNA_講習_v2.0.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋本編 36 枚＋補足 8 枚（計 49 枚、話者ノート付き、16:9）
+- `ViennaRNA_講習_事前準備_インストール手順_v2.0.pptx` / `.pdf` — 事前配布用のインストール手順のみ（5 ページ）
+- `exercises/` — 演習用スクリプト、README、`expected_output.txt`（macOS での実測出力）
+- `pyproject.toml` / `uv.lock` / `.python-version` — 上の B で使う環境の定義（viennarna==2.7.2）
 - `build/` — スライドを再生成するためのソース
   - `compute.py` → `data.json`：ViennaRNA 2.7.2 で全数値を計算（seed 固定）
   - `figures.py` → `fig/`：数式画像（matplotlib mathtext。LaTeX 原文は `fig/equations.json`）
@@ -25,7 +76,7 @@
 ## 引用図について
 スライド中の論文図（Hofacker et al. 1994 Fig. 5、Green et al. 2014、Geary et al. 2014 Supplementary Fig. S4）の著作権は各著者・出版社に帰属します。出典は各スライドと補足8に記載しています。
 
-## 再生成
+## 再生成（講師・開発者向け）
 ```bash
 uv sync --group build
 uv run python build/compute.py && uv run python build/figures.py

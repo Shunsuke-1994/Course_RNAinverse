@@ -17,3 +17,5 @@ build/papers/*
 !build/papers/hofacker_fig5.png
 !build/papers/green_f1_panelC.png
 !build/papers/geary_S4_2HAE.png
+# 配布用 zip（exercises/ から作る）
+exercises_v*.zip

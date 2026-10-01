@@ -6,7 +6,7 @@ const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8
 const EQ = JSON.parse(fs.readFileSync(path.join(__dirname, 'fig', 'equations.json'), 'utf8'));
 
 // 資料のバージョン・公開先・出力ファイル名（ここだけ変えれば全体に反映）
-const VERSION = 'v1.0';
+const VERSION = 'v2.0';
 const REPO = 'https://github.com/Shunsuke-1994/Course_RNAinverse';
 const REPO_SHORT = 'github.com/Shunsuke-1994/Course_RNAinverse';
 const NAMES = { main: `ViennaRNA_講習_${VERSION}`, install: `ViennaRNA_講習_事前準備_インストール手順_${VERSION}` };
@@ -126,10 +126,10 @@ function ssRow(s, ss, x, y, o = {}) {
   s.addText(runs, { x, y, w: ss.length * charW(size) + 0.3, h: size / 72 * 1.5, fontFace: F.mono, margin: 0, valign: 'middle', isTextBox: true });
 }
 function numRow(s, n, x, y, o = {}) {
+  // 番号は小さい文字なので、1 つずつ該当する塩基の列の中央に置く（同じ文字数で並べると列がずれる）
   const size = o.size || 26; const ticks = o.ticks || [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50].filter(t => t <= n);
-  const cols = Array(n + 2).fill(' ');
-  ticks.forEach(t => { String(t).split('').forEach((d, k) => { if (t - 1 + k < n) cols[t - 1 + k] = d; }); });
-  s.addText(cols.join(''), { x, y, w: n * charW(size) + 0.3, h: size / 72 * 1.4, fontFace: F.mono, fontSize: size * 0.6, color: T.muted, margin: 0, valign: 'middle', isTextBox: true });
+  const cw = charW(size), h = size / 72 * 1.4;
+  ticks.forEach(t => s.addText(String(t), { x: x + (t - 0.5) * cw - 0.3, y, w: 0.6, h, fontFace: F.mono, fontSize: size * 0.6, color: T.muted, align: 'center', margin: 0, valign: 'middle', isTextBox: true }));
 }
 function label(s, str, x, y, w, o = {}) {
   s.addText(str, Object.assign({ x, y, w, h: 0.4, fontFace: F.jp, fontSize: 16, color: T.muted, margin: 0, valign: 'middle', isTextBox: true }, o));
@@ -162,11 +162,10 @@ function drawStructure(s, seq, ss, coords, box, o = {}) {
     s.addText(String(i + 1), { x: x + dx * (r + 0.16) - 0.25, y: y + dy * (r + 0.16) - 0.13, w: 0.5, h: 0.26, fontFace: F.jp, fontSize: o.numSize || 10, color: T.muted, align: 'center', valign: 'middle', margin: 0, isTextBox: true });
   }
   if (o.ends !== false) {
-    const [x0, y0] = P(0), [xn, yn] = P(n - 1);
-    const d0 = [x0 - cx, y0 - cy], dn = [xn - cx, yn - cy];
-    const L0 = Math.hypot(...d0) || 1, Ln = Math.hypot(...dn) || 1;
-    s.addText("5'", { x: x0 + d0[0] / L0 * (r + 0.42) - 0.25, y: y0 + d0[1] / L0 * (r + 0.42) - 0.15, w: 0.5, h: 0.3, fontFace: F.jp, fontSize: 12, bold: true, color: T.ink, align: 'center', valign: 'middle', margin: 0, isTextBox: true });
-    s.addText("3'", { x: xn + dn[0] / Ln * (r + 0.42) - 0.25, y: yn + dn[1] / Ln * (r + 0.42) - 0.15, w: 0.5, h: 0.3, fontFace: F.jp, fontSize: 12, bold: true, color: T.ink, align: 'center', valign: 'middle', margin: 0, isTextBox: true });
+    // 末端が塩基対を組んでいれば相手と反対側、組んでいなければ鎖を延長した向きに置く
+    // （図の中心から外向きにすると、両端が上にある構造でタイトルにかぶる）
+    const outward = i => { const [x, y] = P(i); const j = pt[i] >= 0 ? pt[i] : (i === 0 ? 1 : n - 2); const [xj, yj] = P(j); const L = Math.hypot(x - xj, y - yj) || 1; return [x, y, (x - xj) / L, (y - yj) / L]; };
+    [[0, "5'"], [n - 1, "3'"]].forEach(([i, lab]) => { const [x, y, dx, dy] = outward(i); s.addText(lab, { x: x + dx * (r + 0.22) - 0.25, y: y + dy * (r + 0.22) - 0.15, w: 0.5, h: 0.3, fontFace: F.jp, fontSize: 12, bold: true, color: T.ink, align: 'center', valign: 'middle', margin: 0, isTextBox: true }); });
   }
   return { P, sc, r };
 }

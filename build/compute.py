@@ -28,6 +28,10 @@ def prob(seq, ss):
 def coords(ss):
     c=RNA.naview_xy_coordinates(ss); n=len(ss)
     return [[round(c[i].X,2), round(c[i].Y,2)] for i in range(n)]
+def coords_simple(ss):
+    # 分岐構造では naview がバルジの塩基を隣と重ねるため、simple 配置を使う
+    c=RNA.simple_xy_coordinates(ss); n=len(ss)
+    return [[round(c[i].X,2), round(c[i].Y,2)] for i in range(n)]
 def bpp_pairs(fc, n, thr=0.01):
     b=fc.bpp(); return [[i,j,round(b[i][j],3)] for i in range(1,n+1) for j in range(i+1,n+1) if b[i][j]>=thr]
 def loops(ss):
@@ -110,7 +114,7 @@ for seed in range(1,31):
         if best is None or p>best['p']: best=dict(seed=seed, seq=sq, p=round(p,3), e=round(en,2))
 print('elements RNA', best)
 le2,_=loop_energies(best['seq'],TJ)
-data['elements']=dict(best, ss=TJ, coords=coords(TJ), loops=le2)
+data['elements']=dict(best, ss=TJ, coords=coords_simple(TJ), loops=le2)
 
 # ---------- 塩基対距離の例 ----------
 ex_bpd=[]

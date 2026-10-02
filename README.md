@@ -4,12 +4,12 @@
 **このリポジトリからダウンロードすれば、スライドも演習もそのまま使えます。**
 
 - 公開先: https://github.com/Shunsuke-1994/Course_RNAinverse
-- 現在の版: **v2.0**（版は表紙と各ページ下に表示しています。更新した場合はファイル名の版を上げます）
+- 現在の版: **v2.1**（版は表紙と各ページ下に表示しています。更新した場合はファイル名の版を上げます）
 
 | 資料 | ファイル |
 |---|---|
-| 講義スライド（PDF） | [`ViennaRNA_講習_v2.0.pdf`](ViennaRNA_講習_v2.0.pdf) |
-| 事前準備：インストール手順（PDF） | [`ViennaRNA_講習_事前準備_インストール手順_v2.0.pdf`](ViennaRNA_講習_事前準備_インストール手順_v2.0.pdf) |
+| 講義スライド（PDF） | [`ViennaRNA_講習_v2.1.pdf`](ViennaRNA_講習_v2.1.pdf) |
+| 事前準備：インストール手順（PDF） | [`ViennaRNA_講習_事前準備_インストール手順_v2.1.pdf`](ViennaRNA_講習_事前準備_インストール手順_v2.1.pdf) |
 | 演習用スクリプト | [`exercises/`](exercises/)（使い方は [`exercises/README.md`](exercises/README.md)） |
 
 ## 使い方
@@ -72,8 +72,8 @@ Issues は誰でも読める公開の場です。名前やメールアドレス�
 
 ## リポジトリの中身
 
-- `ViennaRNA_講習_v2.0.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋GitHub の案内 1 枚＋本編 36 枚＋補足 8 枚（計 50 枚、話者ノート付き、16:9）
-- `ViennaRNA_講習_事前準備_インストール手順_v2.0.pptx` / `.pdf` — 事前配布用のインストール手順と GitHub の案内（6 ページ）
+- `ViennaRNA_講習_v2.1.pptx` / `.pdf` — 講義スライド。表紙＋事前準備 4 枚＋GitHub の案内 1 枚＋本編 36 枚＋補足 8 枚（計 50 枚、話者ノート付き、16:9）
+- `ViennaRNA_講習_事前準備_インストール手順_v2.1.pptx` / `.pdf` — 事前配布用のインストール手順と GitHub の案内（6 ページ）
 - `exercises/` — 演習用スクリプト、README、`expected_output.txt`（macOS での実測出力）
 - `pyproject.toml` / `uv.lock` / `.python-version` — 上の B で使う環境の定義（viennarna==2.7.2）
 - `build/` — スライドを再生成するためのソース

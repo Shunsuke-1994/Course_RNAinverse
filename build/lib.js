@@ -6,7 +6,7 @@ const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8
 const EQ = JSON.parse(fs.readFileSync(path.join(__dirname, 'fig', 'equations.json'), 'utf8'));
 
 // 資料のバージョン・公開先・出力ファイル名（ここだけ変えれば全体に反映）
-const VERSION = 'v2.0';
+const VERSION = 'v2.1';
 const REPO = 'https://github.com/Shunsuke-1994/Course_RNAinverse';
 const REPO_SHORT = 'github.com/Shunsuke-1994/Course_RNAinverse';
 const NAMES = { main: `ViennaRNA_講習_${VERSION}`, install: `ViennaRNA_講習_事前準備_インストール手順_${VERSION}` };
